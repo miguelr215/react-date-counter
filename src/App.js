@@ -16,22 +16,46 @@ function Counter() {
   const date = new Date();
   date.setDate(date.getDate() + count);
 
+  function handleReset() {
+    setCount(0);
+    setStep(1);
+  }
+
   return (
     <div>
       <div className="step-container">
-        <button onClick={() => setStep((curStep) => curStep - 1)}>-</button>
+        <input
+          type="range"
+          min="0"
+          max="10"
+          value={step}
+          onChange={(e) => setStep(Number(e.target.value))}
+        />
+        <span>{step}</span>
+        {/* <button onClick={() => setStep((curStep) => curStep - 1)}>-</button>
         <span>Step: {step}</span>
-        <button onClick={() => setStep((curStep) => curStep + 1)}>+</button>
+        <button onClick={() => setStep((curStep) => curStep + 1)}>+</button> */}
       </div>
 
       <div className="count-container">
         <button onClick={() => setCount((curCount) => curCount - step)}>
           -
         </button>
-        <span>Count: {count}</span>
+        <input
+          type="text"
+          value={count}
+          onChange={(e) => setCount(Number(e.target.value))}
+        />
         <button onClick={() => setCount((curCount) => curCount + step)}>
           +
         </button>
+        {/* <button onClick={() => setCount((curCount) => curCount - step)}>
+          -
+        </button>
+        <span>Count: {count}</span>
+        <button onClick={() => setCount((curCount) => curCount + step)}>
+          +
+        </button> */}
       </div>
 
       <p>
@@ -44,6 +68,13 @@ function Counter() {
         </span>
         {date.toDateString()}
       </p>
+      {count !== 0 || step !== 1 ? (
+        <button type="button" className="reset-btn" onClick={handleReset}>
+          Reset
+        </button>
+      ) : (
+        ''
+      )}
     </div>
   );
 }

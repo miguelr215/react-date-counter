@@ -27,3 +27,13 @@ button {
 .count-container {
   margin: 10px auto;
 }
+
+.count-container input[type='text'] {
+  width: 50%;
+  padding: 5px;
+  font-size: 1.5rem;
+}
+
+.reset-btn {
+  margin: 20px auto;
+}
